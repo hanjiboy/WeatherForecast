@@ -1,0 +1,70 @@
+doctype html(lang='en')
+head
+  meta(charset='UTF-8')
+  title WeatherForecast
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css')
+  link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=Teko:wght@300;400;700&display=swap')
+  link(rel='stylesheet', href='https://www.vecteezy.com/free-vector/vector')
+  link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.7.0/css/all.css')
+  link(rel='stylesheet', href='./style.css')
+body
+// partial:index.partial.html
+#weatherboxapp
+  header#header_index.p-5.text-center
+    .container
+      h1(v-if="!modelShow") 三十六小時氣候預測
+      .moon
+      .search
+        .explore Click to select a city
+        select(v-model="selected")
+          option(value="" disabled) -- 選擇縣市 --
+          option(:value="item.City" v-for="item in weathers" v-bind:key="item.City") {{item.City}}
+        span.i.fas.fa-search(@click="modelShow = !modelShow")
+      .infos(v-for="item in weathers" v-bind:key="item.City" v-if="selected == '' || item.City == selected") 
+        .cityweather(v-if="modelShow")
+          label
+            input#switch_night(type="checkbox")
+            .top
+              svg.tmpsvg(viewbox="0 0 150 150")
+                circle(cx=0 cy=15 r=1.5)
+                text.MaxT(x=0 y=15) {{item.todayMaxT}}°C
+                  animateMotion(path="M-60,-2 20,-2 75,8 95,8" begin="0s" dur="5s" repeatCount="indefinite" additive="sum")
+
+                circle(cx=95 cy=25 r=1.5)  
+                text.MinT(x=95 y=25) {{item.todayMinT}}°C
+                  animateMotion(path="M-0,-2 0,-2 75,8 95,8 150,8" begin="0s" dur="5s" repeatCount="indefinite" additive="sum")
+                polyline(points="0,15 20,15 75,25 95,25 150,32 1000,32")
+
+              .text_area
+                img.topsvg(:src="item.todayimg", alt="")
+                .adress {{item.City}}
+                .time 今日白天(12:00~18:00)
+                .temperature {{item.todayMaxT}}°C ~ {{item.todayMinT}}°C
+                .rainProbability
+                  .i.fas.fa-umbrella
+                    span {{item.todayPOP}}%
+            .bottom
+              .row
+                .col-md-6.col-6
+                  .text_b_area
+                    .time 今晚明晨<br>(18:00~06:00)
+                    img.btsvg(:src="item.todaynightimg", alt="")
+                    .temperature {{item.todaynightMaxT}}°C ~ {{item.todaynightMinT}}°C
+                    .rainProbability
+                      .i.fas.fa-umbrella
+                        span {{item.todaynightPOP}}%
+                .col-md-6.col-6
+                  .text_b_area
+                    .time 明日白天<br>(06:00~18:00)
+                    img.btsvg(:src="item.tomorrowimg", alt="")
+                    .temperature {{item.tomorrowMaxT}}°C ~ {{item.tomorrowMinT}}°C
+                    .rainProbability
+                      .i.fas.fa-umbrella
+                        span {{item.tomorrowPOP}}%
+// partial
+script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/16.1.3/smooth-scroll.min.js')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js')
+script(src='./script.js')       
+        
+        
