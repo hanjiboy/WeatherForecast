@@ -1,0 +1,303 @@
+@charset "UTF-8";
+* {
+  font-family: "Teko", "微軟正黑體";
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: bold;
+}
+
+#weatherboxapp {
+  height: 100%;
+}
+
+header#header_index {
+  height: 100%;
+  cursor: pointer;
+  letter-spacing: 1px;
+  background-image: url(https://pngimg.com/uploads/cloud/cloud_PNG25.png);
+  flex-direction: column;
+  background-size: auto 700px;
+  background-repeat: repeat-x;
+  background-position: center;
+  animation: animationBGI 200s linear infinite;
+}
+@keyframes animationBGI {
+  0% {
+    background-position: 0;
+  }
+  50% {
+    background-color: #2B2B2B;
+    color: #f3f3f3;
+  }
+  100% {
+    background-position: 7000px;
+  }
+}
+header#header_index .container {
+  padding: 250px 0px;
+}
+header#header_index .moon {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  border-radius: 100%;
+  box-shadow: 15px -15px;
+  left: 10%;
+  top: 10%;
+  animation: moonmove 200s infinite;
+}
+@keyframes moonmove {
+  0% {
+    box-shadow: -45px 45px #FFD633;
+    transform: translateX(45px) translateY(-45px);
+  }
+  100% {
+    box-shadow: 45px -45px #FFD633;
+    transform: translateX(-45px) translateY(45px);
+  }
+}
+header#header_index .marginbottom {
+  position: absolute;
+  width: 95%;
+  height: 30%;
+  right: -5px;
+  bottom: 0px;
+  animation: upin 2s both;
+}
+@keyframes upin {
+  0% {
+    bottom: -100px;
+  }
+  100% {
+    bottom: 0px;
+  }
+}
+header#header_index .search {
+  position: absolute;
+  left: 50%;
+  top: 90%;
+  transform: translate(-50%, -90%);
+  width: 400px;
+}
+header#header_index .search .explore {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+}
+header#header_index .search .explore.hide {
+  display: none;
+}
+header#header_index .search select {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  letter-spacing: 2px;
+  background-color: #F5F5F5;
+  border-radius: 5px;
+  display: none;
+}
+header#header_index .search select.show {
+  display: block;
+}
+header#header_index .search select option {
+  font-weight: 600;
+}
+header#header_index .search span {
+  position: absolute;
+  left: 72%;
+  top: 60%;
+  transform: translate(-72%, -60%);
+  font-size: 20px;
+  color: #222;
+  display: none;
+}
+header#header_index .search span.show {
+  display: block;
+}
+header#header_index .cityweather {
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%, -20%);
+  display: inline-block;
+  max-width: 400px;
+  min-width: 400px;
+  padding: 0;
+  margin: 10px 4px;
+  cursor: pointer;
+  animation: flybox 1s linear both;
+  background-color: #f3f3f3;
+  border-radius: 5px;
+}
+header#header_index .cityweather:hover .bottom {
+  height: 195px;
+}
+@keyframes flybox {
+  0% {
+    transform: translate(-50%, -20%) scale(0);
+  }
+  50% {
+    transform: translate(-50%, -20%) scale(0.5);
+  }
+  100% {
+    transform: translate(-50%, -20%) scale(1);
+  }
+}
+header#header_index .cityweather label {
+  width: 100%;
+  cursor: pointer;
+}
+header#header_index .cityweather #switch_night {
+  display: none;
+}
+header#header_index .cityweather #switch_night:checked + .top .topsvg, header#header_index .cityweather #switch_night:checked + .top .temperature {
+  opacity: 0.2;
+}
+header#header_index .cityweather #switch_night:checked + .top .tmpsvg circle, header#header_index .cityweather #switch_night:checked + .top .tmpsvg polyline, header#header_index .cityweather #switch_night:checked + .top .tmpsvg text {
+  opacity: 1;
+}
+header#header_index .cityweather .top {
+  padding: 0;
+  margin: 0;
+  height: 300px;
+  width: 100%;
+  cursor: pointer;
+  position: relative;
+  background: linear-gradient(20deg, #19283D, #1D678F);
+  background-size: 100% 300%;
+  animation: daylight 20s both;
+  border-radius: 5px 5px 0px 0px;
+}
+@keyframes daylight {
+  0% {
+    background-position: 100% 30%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+header#header_index .cityweather .tmpsvg {
+  width: auto;
+  height: auto;
+}
+header#header_index .cityweather .tmpsvg polyline {
+  stroke: #f3f3f3;
+  stroke-width: 0.5px;
+  fill: none;
+  opacity: 0.2;
+}
+header#header_index .cityweather .tmpsvg circle {
+  fill: #f3f3f3;
+  opacity: 0.2;
+}
+header#header_index .cityweather .tmpsvg text {
+  fill: #f3f3f3;
+  font-size: 8px;
+  opacity: 0;
+}
+header#header_index .cityweather .text_area {
+  color: #f3f3f3;
+}
+header#header_index .cityweather .text_area .topsvg {
+  position: absolute;
+  left: 55%;
+  top: 30%;
+}
+header#header_index .cityweather .text_area .adress {
+  position: absolute;
+  left: 5%;
+  top: 40%;
+  font-weight: 900;
+  font-size: 40px;
+  letter-spacing: 2px;
+}
+header#header_index .cityweather .text_area .time {
+  position: absolute;
+  left: 6%;
+  top: 58%;
+  font-weight: 500;
+  font-size: 15px;
+  opacity: 0.5;
+}
+header#header_index .cityweather .text_area .temperature {
+  position: absolute;
+  left: 6%;
+  top: 70%;
+  font-weight: 500;
+  font-size: 30px;
+}
+header#header_index .cityweather .text_area .rainProbability {
+  position: absolute;
+  left: 6%;
+  top: 85%;
+  font-size: 20px;
+}
+header#header_index .cityweather .text_area .rainProbability span {
+  font-weight: normal;
+  margin-left: 10px;
+  font-size: 25px;
+}
+header#header_index .cityweather .bottom {
+  height: 5px;
+  width: 100%;
+  overflow: hidden;
+  transition-duration: 1.5s;
+}
+header#header_index .cityweather .bottom .row {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+header#header_index .cityweather .bottom .row .col-md-6.col-6 {
+  padding: 0;
+  margin: 0;
+}
+header#header_index .cityweather .bottom .row .text_b_area {
+  margin-top: 5px;
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  font-weight: 500;
+  color: rgba(34, 34, 34, 0.6);
+}
+header#header_index .cityweather .bottom .row .text_b_area .temperature {
+  font-size: 20px;
+}
+header#header_index .cityweather .bottom .row .text_b_area span {
+  margin-left: 5px;
+}
+header#header_index .cityweather .bottom .row .text_b_area .btsvg {
+  width: 50%;
+  height: 90px;
+}
+header#header_index .topsvg, header#header_index .temperature {
+  transition: 0.5s;
+}
+header#header_index .tmpsvg circle {
+  transition: 0.5s;
+}
+header#header_index .tmpsvg polyline {
+  transition: 0.5s 0.3s;
+}
+header#header_index .tmpsvg text {
+  transition: 0.5s 0.3s;
+}
