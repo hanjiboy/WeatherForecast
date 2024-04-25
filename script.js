@@ -22,7 +22,7 @@ var vm = new Vue({
     {
       $.ajax
       ({
-        url: "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-5A2E820B-37C7-474C-A6AB-48B3CE8D0820&format=JSON&elementName=",
+        url: "https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWA-82765412-A8A9-4717-9F5D-030E4E3437FD&format=JSON&locationName=&elementName=",
         success: function(res)
         {
           const weatherData = res.records.location;
